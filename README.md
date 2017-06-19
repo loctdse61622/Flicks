@@ -2,7 +2,7 @@
 
 Flicks shows the latest movies currently playing in theaters. The app utilizes the Movie Database API to display images and basic information about these movies to the user.
 
-Time spent: 18 hours spent in total
+Time spent: in progress
 
 ## User Stories
 
@@ -44,8 +44,7 @@ Here's a walkthrough of implemented user stories:
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 ## Notes
-
-Describe any challenges encountered while building the app.
+- Rating bar does not display properly due to YouTubeBaseActivity does not inherit from AppCompatActivity.
 
 ## Open-source libraries used
 
