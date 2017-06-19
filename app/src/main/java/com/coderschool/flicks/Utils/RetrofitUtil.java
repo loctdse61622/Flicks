@@ -1,4 +1,4 @@
-package com.coderschool.flicks;
+package com.coderschool.flicks.Utils;
 
 import java.io.IOException;
 

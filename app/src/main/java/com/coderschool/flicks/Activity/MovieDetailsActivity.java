@@ -1,41 +1,49 @@
-package com.coderschool.flicks;
+package com.coderschool.flicks.Activity;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.appcompat.*;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.coderschool.flicks.Api.MovieAPI;
+import com.coderschool.flicks.Model.ListTrailer;
+import com.coderschool.flicks.Model.Movie;
+import com.coderschool.flicks.R;
+import com.coderschool.flicks.Utils.RetrofitUtil;
 import com.google.android.youtube.player.YouTubeBaseActivity;
 import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
 import com.google.android.youtube.player.YouTubePlayerView;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class MovieDetailsActivity extends YouTubeBaseActivity{
-    private TextView tvTitle;
-    private TextView tvReleaseDate;
-    private TextView tvOverview;
-    private TextView tvRating;
-    private RatingBar rtbRatingBar;
-    private YouTubePlayerView youTubePlayerView;
+
+    @BindView(R.id.tvDetailTitle)
+    TextView tvTitle;
+    @BindView(R.id.tvDetailReleaseDate)
+    TextView tvReleaseDate;
+    @BindView(R.id.tvDetailOverview)
+    TextView tvOverview;
+    @BindView(R.id.tvRating)
+    TextView tvRating;
+    @BindView(R.id.rtbRatingBar)
+    RatingBar rtbRatingBar;
+    @BindView(R.id.player)
+    YouTubePlayerView youTubePlayerView;
+
     private MovieAPI movieAPI;
     private String youtube_key;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.movie_details);
-
-        tvTitle = (TextView) findViewById(R.id.tvDetailTitle);
-        tvReleaseDate = (TextView) findViewById(R.id.tvDetailReleaseDate);
-        tvRating = (TextView) findViewById(R.id.tvRating);
-        tvOverview = (TextView) findViewById(R.id.tvDetailOverview);
-        rtbRatingBar = (RatingBar) findViewById(R.id.rtbRatingBar);
+        setContentView(com.coderschool.flicks.R.layout.movie_details);
+        ButterKnife.bind(this);
 
 //        Bundle extras = getIntent().getExtras();
 //        tvTitle.setText(extras.get("title").toString());
@@ -54,11 +62,10 @@ public class MovieDetailsActivity extends YouTubeBaseActivity{
     }
 
     private void initYouTubePlayer(final Movie movie){
-        youTubePlayerView = (YouTubePlayerView) findViewById(R.id.player);
-        youTubePlayerView.initialize(BuildConfig.YOUTUBE_KEY, new YouTubePlayer.OnInitializedListener() {
+        youTubePlayerView.initialize(com.coderschool.flicks.BuildConfig.YOUTUBE_KEY, new YouTubePlayer.OnInitializedListener() {
             @Override
             public void onInitializationSuccess(YouTubePlayer.Provider provider, final YouTubePlayer youTubePlayer, boolean b) {
-                movieAPI = RetrofitUtil.create(BuildConfig.API_KEY).create(MovieAPI.class);
+                movieAPI = RetrofitUtil.create(com.coderschool.flicks.BuildConfig.API_KEY).create(MovieAPI.class);
                 movieAPI.getTrailer(String.valueOf(movie.getId())).enqueue(new Callback<ListTrailer>() {
                     @Override
                     public void onResponse(Call<ListTrailer> call, Response<ListTrailer> response) {

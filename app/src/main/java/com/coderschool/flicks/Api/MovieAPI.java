@@ -1,4 +1,7 @@
-package com.coderschool.flicks;
+package com.coderschool.flicks.Api;
+
+import com.coderschool.flicks.Model.ListTrailer;
+import com.coderschool.flicks.Model.NowPlaying;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

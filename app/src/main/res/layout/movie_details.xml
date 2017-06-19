@@ -37,7 +37,7 @@
             android:layout_height="wrap_content">
             <RatingBar
                 android:id="@+id/rtbRatingBar"
-                style="@style/Base.Widget.AppCompat.RatingBar.Small"
+                style="?android:attr/ratingBarStyleSmall"
                 android:numStars="10"
                 tools:rating="8"
                 android:isIndicator="true"

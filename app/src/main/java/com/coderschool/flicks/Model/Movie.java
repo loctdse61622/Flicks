@@ -1,4 +1,4 @@
-package com.coderschool.flicks;
+package com.coderschool.flicks.Model;
 
 
 import com.google.gson.annotations.SerializedName;
